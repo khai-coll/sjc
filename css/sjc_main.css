@@ -49,7 +49,7 @@ footer {
     border-radius: 2em 2em 0 0; /* Adds a curve to the top-left and top-right corners */
 
     p { /* Applies the following to all "p" elements within the "footer" element" */
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
