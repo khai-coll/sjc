@@ -1,0 +1,250 @@
+@font-face { font-family: Figtree; src: url('Figtree-Variable.ttf'); } /* Adds a font with the name "Figtree" */
+
+:root { /* This section adds custom variables that can be used as values in properties */
+    --head-color1: #826dfb;
+    --head-color1a: #826dfbC0;
+    --head-color2: #edf2fb;
+    --head-color2a: #edf2fb60;
+
+    --main-color1: #b6ccfe;
+    --main-color2: #00171f;
+
+    --transition1: all 0.67s ease; /* Adds a smooth transition to elements with this value in the transition property */
+    --transition2: all 1s ease;
+}
+
+* { /* When no value is specified for the following properties in a selector, it will fallback to these values */
+    margin: 0 auto;
+    max-width: 1440px;
+    font: 450 24px Figtree, sans-serif; /* Shorthand property for font-weight, font-size, and font-family */
+    line-height: 2;
+    box-sizing: border-box;
+}
+
+html { /* Applies to the "html" element */
+    background-color: #e6e1ff;
+}
+
+body {
+    height: 100%;
+    display: flex; /* Makes the "body" element a flex container */
+    flex-direction: column; /* The direction flex items will be displayed */
+    margin: auto; /* Centres the element */
+}
+
+header {
+    position: fixed; /* The element will not move even when scrolling */
+    top: 0; /* Location relative to the top of the window */
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    font: 450 24px Figtree;
+    background-color: var(--head-color1); /* Using the variables set up in ":root" */
+    color: var(--head-color2);
+    text-align: center;
+    margin: 2em auto 0 0;
+    padding: 0.5em 1em;
+    border-radius: 2em 2em 0 0; /* Adds a curve to the top-left and top-right corners */
+
+    p { /* Applies the following to all "p" elements within the "footer" element" */
+        font-size: 16px;
+    }
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Separates the elements by putting the empty space inbetween them */
+    padding: 0.5em;
+    background-color: var(--head-color1);
+    border-radius: 0 0 2em 2em; /* Adds a curve to the bottom-left and bottom-right corners */
+
+    .logo {
+        color: var(--head-color2);
+        font: 750 48px Figtree, sans-serif;
+        cursor: pointer; /* Changes the cursor when hovering over the element */
+    }
+
+    #menu_icon {
+        color: var(--head-color2);
+        font: 600 40px Figtree, sans-serif;
+        z-index: 1; /* Places this element infront of others */
+        cursor: pointer;
+        display: none;
+    }
+
+    .navlist {
+        display: flex;
+        list-style: none; /* Removes the bullet points from the "li" elements */
+
+        a {
+            margin: 0 0.1em;
+            padding: 0.5em 0.5em;
+            color: var(--head-color2);
+            font: 600 32px Figtree, sans-serif;
+            text-decoration: none; /* Removes the underline from the article links */
+            border-radius: 1em;
+
+            &:hover { /* The "&" is the nesting selector. It adds the selector of the parent to this child. */
+                background-color: var(--head-color2a); /* When the cursor hovers over the element, change the background colour */
+                color: #ffffff;
+                transition: var(--transition2);
+            }
+        }
+    }
+}
+
+main {
+    margin-top: 5em; /* Adds a margin to the top of the page to account for the fixed navbar */
+}
+
+div[class^="row"] { /* Applies the following to all "div" elements with a class name that starts with "row" */
+    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+    gap: 2em; /* The space between flex items */
+    padding: 1em;
+    flex: 1; /* The ratio of space this flex item takes up. In this case, it would be a 1:0 ratio, or 100% */
+}
+
+div.row_reverse {
+    flex-direction: row-reverse; /* Displays the elements right-to-left */
+}
+
+section {
+    background-color: var(--main-color1);
+    color: var(--main-color2);
+    padding: 1.5em 2em;
+    border-radius: 2em;
+
+    h2 {
+        font: 750 40px Figtree, sans-serif;
+        margin-bottom: 0.5em;
+    }
+
+    h3 {
+        font: 750 32px Figtree, sans-serif;
+        margin-bottom: 1em;
+    }
+}
+
+section.col_top {
+    width: 100%;
+    flex: 1;
+    padding: 1.5em 2em;
+    text-align: center;
+}
+
+section.col_txt {
+    flex: 2; /* If placed with a section with the "col_img" class, this section takes up two thirds of available space due to the 2:1 ratio */
+}
+
+section.col_img {
+    padding: 1em;
+    flex: 1; /* If placed with a section with the "col_txt" class, this section takes up one third of available space due to the 1:2 ratio */
+}
+
+@media (max-width: 1080px) { /* When the screen width is 1,000px or lower, do the following */
+    * {
+        margin: 0;
+    }
+
+    nav {
+        position:relative;
+        border-radius: 0;
+
+        .logo {
+            padding: 0 0.5em;
+            font-size: 32px;
+    }
+
+        .navlist a {
+            font-size: 24px;
+        }
+    }
+
+    main, div[class^="row"] {
+        flex-direction: column;
+        transition: var(--transition2);
+    }
+
+    div.contain_img {
+        height: 20em !important;
+    }
+
+    footer {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 800px) { /* When the screen width is 800px or lower, also the following */
+    nav {
+        .navlist {
+            position: absolute;
+            top: -500px; /* Places the navbar beyond the top of the screen */
+            left: 0;
+            right: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Limits flex items to one column */
+            background-color: var(--head-color1);
+            transition: var(--transition2);
+            border-radius: 0 0 2em 2em;
+        }
+
+        .navlist {
+
+            &.open {
+                top: 100%;
+                left: 0;
+                right: 0;
+            }
+            
+            a {
+                font: 600 32px Figtree;
+                color: var(--head-color2);
+                padding: 0.5em 1em;
+                margin: 0.5em;
+                display: block;
+                border-radius: 1.33em;
+
+                &:hover {
+                    background-color: var(--head-color2a);
+                    color: #ffffff;
+                }
+            }
+        }
+
+        #menu_icon {
+            display: block;
+        }
+    }
+
+    main.open {
+        margin-top: 21.5em;
+    }
+}
+
+div.contain_img {
+    display: flex;
+    overflow: hidden; /* Hides any part of the image that goes beyond the given area */
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5em;
+    border: 0.33em solid var(--head-color1);
+    padding: 0.25em;
+    margin: auto;
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Causes images to retain their aspect ratio and cover the available space instead of being warped */
+        padding: 0;
+        border-radius: 1em;
+    }
+}

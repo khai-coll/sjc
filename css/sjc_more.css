@@ -1,0 +1,13 @@
+.contain_img {
+    max-height: 12em; /* Limits the height of elements with the class */
+    height: 12em !important; /* The "!important" tag causes this value to take priority over others */
+
+    a {
+        margin: auto;
+        text-align: center;
+
+        img {
+            max-height: 10em;
+        }
+    }
+}
